@@ -39,8 +39,7 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe(
       (isAuthenticated) => {
         if (isAuthenticated) {
-          const redirectUrl = this.authService.redirectUrl || '/dashboard';
-          this.router.navigateByUrl(redirectUrl);
+          this.router.navigate(['/dashboard']);
         } else {
           this.onLoginFailure();
         }

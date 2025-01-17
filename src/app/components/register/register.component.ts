@@ -5,8 +5,6 @@ import { CityService } from '../../services/city/city.service';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule, NgIf } from '@angular/common';
-import { AuthService } from '../../services/auth/auth.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -53,8 +51,7 @@ export class RegisterComponent implements OnInit {
     private translateService: TranslateService,
     private router: Router,
     private countryService: CountryService,
-    private cityService: CityService,
-    private authService: AuthService
+    private cityService: CityService
   ) {}
 
   ngOnInit(): void {
@@ -124,11 +121,11 @@ export class RegisterComponent implements OnInit {
               'PASSWORD MUST BE AT LEAST 8 CHARACTERS LONG AND INCLUDE AT LEAST ONE UPPERCASE LETTER, ONE NUMBER, AND ONE SPECIAL CHARACTER'
             )
           : '';
-        this.validateRepeatPassword();
+        this.validatePasswordMatch();
         break;
 
       case 'repeatPassword':
-        this.validateRepeatPassword();
+        this.validatePasswordMatch();
         break;
 
       default:
@@ -136,7 +133,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  validateRepeatPassword(): void {
+  validatePasswordMatch(): void {
     this.formErrors.repeatPassword =
       this.password !== this.repeatPassword
         ? this.translateService.instant('PASSWORDS DO NOT MATCH')
@@ -200,22 +197,9 @@ export class RegisterComponent implements OnInit {
       phone: this.selectedCountryPrefix + this.phone,
     };
 
-    this.loading = true;
-    this.authService.register(user).subscribe(
-      (response) => {
-        this.loading = false;
-        this.resetForm();
-        this.router.navigate(['/dashboard/user-profile']);
-      },
-      (error: HttpErrorResponse) => {
-        this.loading = false;
-        if (error.status === 400) {
-          this.errorMessage = 'Bad Request. Please check the entered details.';
-        } else {
-          this.errorMessage = 'Error registering user';
-        }
-      }
-    );
+    localStorage.setItem('user', JSON.stringify(user));
+    this.resetForm();
+    this.router.navigate(['/user-profile']);
   }
 
   resetFormErrors(): void {

@@ -26,7 +26,7 @@
         id="lastName"
         placeholder="{{ 'ENTER YOUR LAST NAME' | translate }}"
         [(ngModel)]="lastname"
-        name="lastname"
+        name="surname"
         required
         [class.is-invalid]="lastNameField.invalid && (lastNameField.touched || lastNameField.dirty)"
         #lastNameField="ngModel"
@@ -72,73 +72,71 @@
       </div>
     </div>
 
-    <div class="form-group half-width">
-      <label for="password">{{ 'PASSWORD' | translate }}</label>
-      <input
-        [type]="showPassword ? 'text' : 'password'"
-        id="password"
-        placeholder="{{ 'ENTER YOUR PASSWORD' | translate }}"
-        [(ngModel)]="password"
-        name="password"
-        required
-        [class.is-invalid]="passwordField.invalid && (passwordField.touched || passwordField.dirty)"
-        #passwordField="ngModel"
-        minlength="8"
-        pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-      />
-      <button
-        type="button"
-        (click)="togglePasswordVisibility()"
-        class="toggle-password-btn"
-        [attr.aria-label]="showPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD' | translate"
-      >
-        {{ showPassword ? '🙈' : '👁️' }}
-      </button>
-      <div *ngIf="passwordField.invalid && (passwordField.touched || passwordField.dirty)" class="error-message">
-        <p *ngIf="passwordField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
-        <p *ngIf="passwordField.errors?.['pattern']">
-          {{ 'PASSWORD MUST BE AT LEAST 8 CHARACTERS LONG AND INCLUDE AT LEAST ONE UPPERCASE LETTER, ONE NUMBER, AND ONE SPECIAL CHARACTER' | translate }}
-        </p>
-      </div>
-    </div>
+<div class="form-group half-width">
+  <label for="password">{{ 'PASSWORD' | translate }}</label>
+  <input
+    [type]="showPassword ? 'text' : 'password'"
+    id="password"
+    placeholder="{{ 'ENTER YOUR PASSWORD' | translate }}"
+    [(ngModel)]="password"
+    name="password"
+    required
+    [class.is-invalid]="passwordField.invalid && (passwordField.touched || passwordField.dirty)"
+    #passwordField="ngModel"
+    minlength="8"
+    pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+  />
+  <button
+    type="button"
+    (click)="togglePasswordVisibility()"
+    class="toggle-password-btn"
+    [attr.aria-label]="showPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD' | translate"
+    >
+    {{ showPassword ? '🙈' : '👁️' }}
+  </button>
+  <div *ngIf="passwordField.invalid && (passwordField.touched || passwordField.dirty)" class="error-message">
+    <p *ngIf="passwordField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+    <p *ngIf="passwordField.errors?.['pattern']">
+      {{ 'PASSWORD MUST BE AT LEAST 8 CHARACTERS LONG AND INCLUDE AT LEAST ONE UPPERCASE LETTER, ONE NUMBER, AND ONE SPECIAL CHARACTER' | translate }}
+    </p>
+  </div>
+</div>
 
-    <div class="form-group half-width">
-      <label for="repeatPassword">{{ 'REPEAT PASSWORD' | translate }}</label>
-      <input
-        [type]="showRepeatPassword ? 'text' : 'password'"
-        id="repeatPassword"
-        placeholder="{{ 'REPEAT PASSWORD' | translate }}"
-        [(ngModel)]="repeatPassword"
-        name="repeatPassword"
-        required
-        [class.is-invalid]="repeatPasswordField.invalid && (repeatPasswordField.touched || repeatPasswordField.dirty)"
-        #repeatPasswordField="ngModel"
-        (ngModelChange)="validateRepeatPassword()"
-      />
-      <button
-        type="button"
-        (click)="toggleRepeatPasswordVisibility()"
-        class="toggle-repeat-password-btn"
-        [attr.aria-label]="showRepeatPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD' | translate"
-      >
-        {{ showRepeatPassword ? '🙈' : '👁️' }}
-      </button>
-      <div *ngIf="repeatPasswordField.invalid && (repeatPasswordField.touched || repeatPasswordField.dirty)" class="error-message">
-        <p *ngIf="repeatPasswordField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
-        <p *ngIf="repeatPasswordField.errors?.['passwordMismatch']">{{ 'PASSWORDS DO NOT MATCH' | translate }}</p>
-      </div>
+  <div class="form-group half-width">
+    <label for="repeatPassword">{{ 'REPEAT PASSWORD' | translate }}</label>
+    <input
+      [type]="showRepeatPassword ? 'text' : 'password'"
+      id="repeatPassword"
+      placeholder="{{ 'REPEAT PASSWORD' | translate }}"
+      [(ngModel)]="repeatPassword"
+      name="repeatPassword"
+      required
+      [class.is-invalid]="formErrors.repeatPassword"
+      (ngModelChange)="validateField('repeatPassword')"
+    />
+    <button
+    type="button"
+    (click)="toggleRepeatPasswordVisibility()"
+    class="toggle-repeat-password-btn"
+    [attr.aria-label]="showRepeatPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD' | translate"
+  >
+    {{ showRepeatPassword ? '🙈' : '👁️' }}
+  </button>
+    <div *ngIf="formErrors.repeatPassword" class="error-message">
+      <p>{{ formErrors.repeatPassword }}</p>
     </div>
+  </div>
+
 
     <div class="form-group half-width">
       <label for="country">{{ 'COUNTRY' | translate }}</label>
-      <select
+      <select [(ngModel)]="selectedCountry" (change)="onCountryChange()"
         id="country"
         [(ngModel)]="selectedCountry"
         name="country"
         required
         [class.is-invalid]="countryField.invalid && (countryField.touched || countryField.dirty)"
         #countryField="ngModel"
-        (change)="onCountryChange()"
       >
         <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
       </select>
@@ -193,22 +191,26 @@
           class="phone-prefix"
         />
         <input
-          id="phone"
-          name="phone"
-          type="text"
-          placeholder="{{ 'ENTER YOUR TELEPHONE' | translate }}"
-          [(ngModel)]="phone"
-          (input)="formatPhoneNumber()"
-          required
-          [class.is-invalid]="phoneField.invalid && (phoneField.touched || phoneField.dirty)"
-          #phoneField="ngModel"
-        />
+        id="phone"
+        name="phone"
+        type="text"
+        placeholder="{{ 'ENTER YOUR TELEPHONE' | translate }}"
+        [(ngModel)]="phone"
+        (input)="formatPhoneNumber()"
+        required
+        [class.is-invalid]="phoneField.invalid && (phoneField.touched || phoneField.dirty)"
+        #phoneField="ngModel"
+      />
+      
       </div>
       <div *ngIf="phoneField.invalid && (phoneField.touched || phoneField.dirty)" class="error-message">
         <p *ngIf="phoneField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
         <p *ngIf="phoneField.errors?.['pattern']">{{ 'INVALID TELEPHONE NUMBER' | translate }}</p>
       </div>
     </div>
+    
+    
+    
 
     <div class="form-group full-width">
       <button type="submit" class="btn" [disabled]="registerForm.invalid">{{ 'REGISTER' | translate }}</button>
