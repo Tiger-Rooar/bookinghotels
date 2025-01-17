@@ -1,0 +1,89 @@
+.about-us {
+    display: flex;
+    justify-content: center;
+    margin: 50px 50px 50px 50px;
+    font-weight: bold;
+    color: rgb(21, 29, 29);
+    align-items: center;
+    gap: 25px;
+}
+
+.about-us img:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+    
+.about-us img:not(:hover) {
+    transform: scale(1.0);
+    transition: 0.5s;
+}
+
+.first-letter {
+    font-size: 4em;
+    position: relative;
+    bottom: 20px;
+    line-height: 1;
+    float: left;
+    color: black;
+}
+
+.about-text {
+    font-size: 1.2em;
+    line-height: 1.8em;
+    border: 2px solid gray;
+    padding: 50px;
+    background-color: #1A9E5A;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.about-text:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.about-us:hover img {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+}
+
+.about-us:hover .about-text {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .about-us {
+        flex-direction: column;
+        margin: 20px;
+        gap: 15px;
+    }
+
+    .about-text {
+        padding: 30px;
+        font-size: 1em;
+    }
+
+    .first-letter {
+        font-size: 3em;
+        bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .about-text {
+        padding: 20px;
+        font-size: 0.9em;
+    }
+
+    .first-letter {
+        font-size: 2.5em;
+    }
+
+    .about-us img {
+        width: 100%;
+        max-width: 200px;
+    }
+}

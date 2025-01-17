@@ -1,0 +1,52 @@
+<div class="login-container">
+  <h2>{{ 'LOGIN' | translate }}</h2>
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="email">{{ 'EMAIL' | translate }}</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="{{ 'ENTER YOUR EMAIL' | translate }}"
+        [(ngModel)]="email"
+        name="email"
+        required
+        [class.is-invalid]="emailField.invalid && emailField.touched"
+        #emailField="ngModel"
+      />
+      <div *ngIf="emailField.invalid && emailField.touched" class="error-message">
+        <p>{{ 'PLEASE ENTER A VALID EMAIL ADDRESS' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">{{ 'PASSWORD' | translate }}</label>
+      <div class="password-wrapper">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          placeholder="{{ 'ENTER YOUR PASSWORD' | translate }}"
+          [(ngModel)]="password"
+          name="password"
+          required
+          minlength="8"
+          [class.is-invalid]="passwordField.invalid && passwordField.touched"
+          #passwordField="ngModel"
+        />
+        <button type="button" (click)="togglePasswordVisibility()" class="toggle-password-btn">
+          {{ showPassword ? '🙈' : '👁️' }}
+        </button>
+      </div>
+      <div *ngIf="passwordField.invalid && passwordField.touched" class="error-message">
+        <p>{{ 'PASSWORD MUST BE AT LEAST 8 CHARACTERS LONG AND INCLUDE AT LEAST ONE UPPERCASE LETTER, ONE NUMBER, AND ONE SPECIAL CHARACTER' | translate }}</p>
+      </div>
+    </div>
+    
+
+    <div *ngIf="loginError" class="error-message">
+      <strong>{{ 'INVALID CREDENTIALS' | translate }}</strong>
+      <p>{{ 'PLEASE CHECK YOUR EMAIL AND PASSWORD' | translate }}</p>
+    </div>
+
+    <button type="submit" class="btn">{{ 'ENTER' | translate }}</button>
+  </form>
+</div>

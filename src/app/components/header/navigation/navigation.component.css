@@ -1,0 +1,73 @@
+.nav-container {
+    position: relative;
+  }
+  
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: rgb(207, 206, 206);
+    background-color: rgba(1, 148, 72, 0.9);
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1000;
+}
+
+.nav {
+    display: flex;
+    gap: 35px;
+    background-color: rgba(1, 148, 72, 0.9);
+    border-radius: 200px 200px 5px 5px;
+    padding: 40px;
+    text-wrap: nowrap;
+}
+
+.nav a {
+    text-decoration: none;
+    color: rgb(207, 206, 206);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    color: rgb(199, 172, 67);
+    transition: 0.5s;
+}
+
+.nav a.active-page {
+    color: rgb(199, 172, 67);
+}
+  
+@media screen and (max-width: 1000px) {
+.burger-menu {
+    display: block;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-30px);
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgba(1, 148, 72, 0.9);
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0s linear 0.3s;
+    z-index: 1000;
+}
+
+.nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+}

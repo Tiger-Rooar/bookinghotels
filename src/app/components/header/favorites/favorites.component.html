@@ -1,0 +1,32 @@
+<button class="favbtn" (click)="toggleDropdown()">
+  <svg height="32" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0H24V24H0z" fill="none"></path>
+    <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"></path>
+  </svg>
+  <span class="fav-counter" *ngIf="favorites.length > 0">{{ favorites.length }}</span>
+</button>
+
+<div *ngIf="dropdownOpen" class="favorites-fullscreen" (click)="closeDropdown()">
+  <div class="favorites-container" (click)="$event.stopPropagation()">
+    <h2>{{ 'FAVORITES' | translate }}</h2>
+
+    <div *ngIf="favorites.length === 0" class="no-favorites">
+      <p>{{ 'NO FAVORITES YET' | translate }}</p>
+    </div>
+
+    <div *ngFor="let favorite of favorites" class="favorite-item">
+      <div class="favorite-details">
+        <img [src]="favorite.featuredImage" alt="{{ favorite.name }}" class="favorite-image">
+        <p>{{ favorite.name }}</p>
+      </div>
+
+      <div class="favorite-actions">
+        <button (click)="removeFavorite(favorite)" class="delete-btn">{{ 'DELETE' | translate}}</button>
+
+        <a [routerLink]="['/hotel', favorite.id]" class="go-to-hotel" (click)="goToHotel(favorite)">{{ 'DETAILS' | translate}}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="close-btn" (click)="toggleDropdown()">×</div>
+</div>

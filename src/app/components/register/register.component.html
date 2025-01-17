@@ -1,0 +1,218 @@
+<div class="register-container">
+  <h2>{{ 'REGISTER' | translate }}</h2>
+  <form (ngSubmit)="register()" #registerForm="ngForm" class="form-grid">
+
+    <div class="form-group half-width">
+      <label for="name">{{ 'NAME' | translate }}</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="{{ 'ENTER YOUR NAME' | translate }}"
+        [(ngModel)]="name"
+        name="name"
+        required
+        [class.is-invalid]="nameField.invalid && (nameField.touched || nameField.dirty)"
+        #nameField="ngModel"
+      />
+      <div *ngIf="nameField.invalid && (nameField.touched || nameField.dirty)" class="error-message">
+        <p *ngIf="nameField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="lastName">{{ 'LAST NAME' | translate }}</label>
+      <input
+        type="text"
+        id="lastName"
+        placeholder="{{ 'ENTER YOUR LAST NAME' | translate }}"
+        [(ngModel)]="lastname"
+        name="lastname"
+        required
+        [class.is-invalid]="lastNameField.invalid && (lastNameField.touched || lastNameField.dirty)"
+        #lastNameField="ngModel"
+      />
+      <div *ngIf="lastNameField.invalid && (lastNameField.touched || lastNameField.dirty)" class="error-message">
+        <p *ngIf="lastNameField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="birthdate">{{ 'BIRTH DATE' | translate }}</label>
+      <input
+        type="date"
+        id="birthdate"
+        placeholder="{{ 'ENTER YOUR BIRTH DATE' | translate }}"
+        [(ngModel)]="birthdate"
+        name="birthdate"
+        required
+        [class.is-invalid]="birthdateField.invalid && (birthdateField.touched || birthdateField.dirty)"
+        #birthdateField="ngModel"
+      />
+      <div *ngIf="birthdateField.invalid && (birthdateField.touched || birthdateField.dirty)" class="error-message">
+        <p *ngIf="birthdateField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="email">{{ 'EMAIL' | translate }}</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="{{ 'ENTER YOUR EMAIL' | translate }}"
+        [(ngModel)]="email"
+        name="email"
+        required
+        [class.is-invalid]="emailField.invalid && (emailField.touched || emailField.dirty)"
+        #emailField="ngModel"
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      />
+      <div *ngIf="emailField.invalid && (emailField.touched || emailField.dirty)" class="error-message">
+        <p *ngIf="emailField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+        <p *ngIf="emailField.errors?.['pattern']">{{ 'INVALID EMAIL FORMAT' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="password">{{ 'PASSWORD' | translate }}</label>
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        id="password"
+        placeholder="{{ 'ENTER YOUR PASSWORD' | translate }}"
+        [(ngModel)]="password"
+        name="password"
+        required
+        [class.is-invalid]="passwordField.invalid && (passwordField.touched || passwordField.dirty)"
+        #passwordField="ngModel"
+        minlength="8"
+        pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+      />
+      <button
+        type="button"
+        (click)="togglePasswordVisibility()"
+        class="toggle-password-btn"
+        [attr.aria-label]="showPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD' | translate"
+      >
+        {{ showPassword ? '🙈' : '👁️' }}
+      </button>
+      <div *ngIf="passwordField.invalid && (passwordField.touched || passwordField.dirty)" class="error-message">
+        <p *ngIf="passwordField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+        <p *ngIf="passwordField.errors?.['pattern']">
+          {{ 'PASSWORD MUST BE AT LEAST 8 CHARACTERS LONG AND INCLUDE AT LEAST ONE UPPERCASE LETTER, ONE NUMBER, AND ONE SPECIAL CHARACTER' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="repeatPassword">{{ 'REPEAT PASSWORD' | translate }}</label>
+      <input
+        [type]="showRepeatPassword ? 'text' : 'password'"
+        id="repeatPassword"
+        placeholder="{{ 'REPEAT PASSWORD' | translate }}"
+        [(ngModel)]="repeatPassword"
+        name="repeatPassword"
+        required
+        [class.is-invalid]="repeatPasswordField.invalid && (repeatPasswordField.touched || repeatPasswordField.dirty)"
+        #repeatPasswordField="ngModel"
+        (ngModelChange)="validateRepeatPassword()"
+      />
+      <button
+        type="button"
+        (click)="toggleRepeatPasswordVisibility()"
+        class="toggle-repeat-password-btn"
+        [attr.aria-label]="showRepeatPassword ? 'HIDE PASSWORD' : 'SHOW PASSWORD' | translate"
+      >
+        {{ showRepeatPassword ? '🙈' : '👁️' }}
+      </button>
+      <div *ngIf="repeatPasswordField.invalid && (repeatPasswordField.touched || repeatPasswordField.dirty)" class="error-message">
+        <p *ngIf="repeatPasswordField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+        <p *ngIf="repeatPasswordField.errors?.['passwordMismatch']">{{ 'PASSWORDS DO NOT MATCH' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="country">{{ 'COUNTRY' | translate }}</label>
+      <select
+        id="country"
+        [(ngModel)]="selectedCountry"
+        name="country"
+        required
+        [class.is-invalid]="countryField.invalid && (countryField.touched || countryField.dirty)"
+        #countryField="ngModel"
+        (change)="onCountryChange()"
+      >
+        <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+      </select>
+      <div *ngIf="countryField.invalid && (countryField.touched || countryField.dirty)" class="error-message">
+        <p *ngIf="countryField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="city">{{ 'CITY' | translate }}</label>
+      <select
+        id="city"
+        [(ngModel)]="selectedCity"
+        name="city"
+        required
+        [class.is-invalid]="cityField.invalid && (cityField.touched || cityField.dirty)"
+        #cityField="ngModel"
+      >
+        <option value="" disabled selected>{{ 'SELECT CITY' | translate }}</option>
+        <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+      </select>
+      <div *ngIf="cityField.invalid && (cityField.touched || cityField.dirty)" class="error-message">
+        <p *ngIf="cityField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="address">{{ 'ADDRESS' | translate }}</label>
+      <input
+        type="text"
+        id="address"
+        placeholder="{{ 'ENTER YOUR ADDRESS' | translate }}"
+        [(ngModel)]="address"
+        name="address"
+        required
+        [class.is-invalid]="addressField.invalid && (addressField.touched || addressField.dirty)"
+        #addressField="ngModel"
+      />
+      <div *ngIf="addressField.invalid && (addressField.touched || addressField.dirty)" class="error-message">
+        <p *ngIf="addressField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group half-width">
+      <label for="phone">{{ 'TELEPHONE' | translate }}</label>
+      <div class="phone-input-container">
+        <input
+          id="phone-prefix"
+          type="text"
+          readonly
+          [value]="selectedCountryPrefix"
+          class="phone-prefix"
+        />
+        <input
+          id="phone"
+          name="phone"
+          type="text"
+          placeholder="{{ 'ENTER YOUR TELEPHONE' | translate }}"
+          [(ngModel)]="phone"
+          (input)="formatPhoneNumber()"
+          required
+          [class.is-invalid]="phoneField.invalid && (phoneField.touched || phoneField.dirty)"
+          #phoneField="ngModel"
+        />
+      </div>
+      <div *ngIf="phoneField.invalid && (phoneField.touched || phoneField.dirty)" class="error-message">
+        <p *ngIf="phoneField.errors?.['required']">{{ 'REQUIRED FIELD' | translate }}</p>
+        <p *ngIf="phoneField.errors?.['pattern']">{{ 'INVALID TELEPHONE NUMBER' | translate }}</p>
+      </div>
+    </div>
+
+    <div class="form-group full-width">
+      <button type="submit" class="btn" [disabled]="registerForm.invalid">{{ 'REGISTER' | translate }}</button>
+    </div>
+
+  </form>
+</div>

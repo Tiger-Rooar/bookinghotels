@@ -1,0 +1,146 @@
+.booking-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.booking-header, .rooms-header, .bookings-header {
+  color: #2a2a2a;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.room-selection {
+  margin-top: 30px;
+}
+
+.room-list {
+  margin-top: 20px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #5cb85c;
+  color: white;
+  margin-top: 25px;
+}
+
+.btn-primary:hover {
+  background-color: #1fc91f;
+  transition: 0.4s;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #922320;
+  transition: 0.4s;
+}
+
+.no-rooms-text {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.bookings-list {
+  margin-top: 30px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.booking-item {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-details {
+  flex-grow: 1;
+}
+
+.hotel-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.room-name {
+  font-style: italic;
+  color: #555;
+}
+
+.placeholder-option {
+  color: #888;
+}
+
+.form-select {
+  color: #333;
+}
+
+.no-bookings-text {
+  color: #888;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.room-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.no-image {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #888;
+}

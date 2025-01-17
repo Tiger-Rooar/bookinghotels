@@ -1,0 +1,178 @@
+.register-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.form-group {
+  width: 48%;
+  position: relative;
+}
+
+.half-width {
+  width: 48%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus {
+  border-color: #1a9e5a;
+  box-shadow: 0 0 4px rgba(26, 158, 90, 0.25);
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+}
+
+.error-message p {
+  margin: 0;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #1a9e5a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #15d472;
+}
+
+.phone-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phone-prefix {
+  width: 80px;
+  text-align: center;
+}
+
+#phone {
+  flex-grow: 1;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  color: #6c757d;
+}
+
+.toggle-password-btn:focus {
+  outline: none;
+}
+
+.toggle-repeat-password-btn {
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  color: #6c757d;
+}
+
+.toggle-repeat-password-btn:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 555px) {
+  .register-container {
+    padding: 15px;
+  }
+
+  .form-grid {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .btn {
+    font-size: 16px;
+  }
+
+  .phone-input-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .phone-prefix {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #phone {
+    width: 100%;
+  }
+
+  .toggle-password-btn, .toggle-repeat-password-btn {
+    top: 40px;
+  }
+}

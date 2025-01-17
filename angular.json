@@ -16,6 +16,7 @@
             "outputPath": "dist/project-by-khutso",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "baseHref": "/",
             "polyfills": [
               "zone.js"
             ],
@@ -41,13 +42,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "6000kB",
                   "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "6.5kB",
+                  "maximumError": "7kB"
                 }
               ],
               "outputHashing": "all"
@@ -87,7 +88,10 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/favicon.ico",
+              "public/assets",
+              "src/_redirects"
             ],
             "styles": [
               "src/styles.css"

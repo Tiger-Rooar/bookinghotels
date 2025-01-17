@@ -1,0 +1,401 @@
+.left-side {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hotel-details {
+  display: flex;
+  margin: 50px;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  margin-top: 55px;
+  margin-left: 100px;
+  gap: 5px;
+}
+
+.descrcontainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.inside {
+  font-weight: bold;
+  color: rgb(114, 114, 114);
+}
+
+.inside a {
+  color: #1A9E5A;
+}
+
+.inside a:hover {
+  color: #C7AC43;
+  transition: 0.3s;
+}
+
+.address {
+  font-weight: bold;
+  color: rgb(114, 114, 114);
+}
+
+.hotel-details img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px 0;
+  cursor: zoom-in;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: zoom-out;
+}
+
+.modal img {
+  max-width: 80%;
+  max-height: 90%;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.modal img:hover {
+  transform: scale(1.05);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgb(241, 87, 87);
+  color: #fff;
+  transform: scale(1.2);
+}
+
+.error {
+  color: #ff4c4c;
+  background-color: #ffe6e6;
+  border: 1px solid #ff4c4c;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  width: fit-content;
+}
+
+.rooms {
+  margin-top: 20px;
+  margin-left: 100px;
+}
+
+.room-gallery {
+  text-align: center;
+  position: relative;
+}
+
+.gallery img {
+  width: 100px;
+  transition: transform 0.3s ease-in;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+.gallery {
+  overflow: hidden;
+  width: calc(120px * 4.2);
+}
+
+.gallery-slider {
+  display: flex;
+  justify-content: center;
+  transition: transform 0.5s ease;
+  gap: 5px;
+}
+
+.gallery-slide {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-slide.active {
+  display: flex;
+  gap: 5px;
+}
+
+.arrow-btn {
+position: absolute;
+top: 60%;
+transform: translateY(-50%);
+background-color: rgba(0, 0, 0, 0.5);
+color: white;
+font-size: 24px;
+padding: 10px;
+border-radius: 50%;
+cursor: pointer;
+z-index: 10;
+}
+
+.arrow-btn:hover {
+background-color: rgba(0, 0, 0, 0.8);
+}
+
+.arrow-left {
+left: 5px;
+}
+
+.arrow-right {
+right: 5px;
+}
+
+.vault {
+  font-weight: bold;
+}
+
+.bk-btn {
+  margin-top: 25px;
+  margin-left: 100%;
+}
+
+.button-booking {
+  cursor: pointer;
+  border: none;
+  background: black;
+  color: #C7AC43;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-content: center;
+  transition:
+    background 500ms,
+    transform 200ms;
+  font-weight: 600;
+}
+
+.button__text {
+  position: absolute;
+  inset: 0;
+  animation: text-rotation 8s linear infinite;
+
+  > span {
+    position: absolute;
+    transform: rotate(calc(19deg * var(--index)));
+    inset: 7px;
+  }
+}
+
+.button__circle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  background: #fff;
+  color: #1A9E5A;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button__icon--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.button-booking:hover {
+  background: #1A9E5A;
+  transform: scale(1.05);
+}
+
+.button-booking:hover .button__icon {
+  color: #C7AC43;
+}
+
+.button-booking:hover .button__icon:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.button-booking:hover .button__icon--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
+
+.card-container {
+  margin-top: 15px;
+}
+
+.service-card-body {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 400px;
+  cursor: default;
+}
+
+.service-card-body:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1A9E5A;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card-body:hover .service-icon {
+  transform: scale(1.1);
+  background-color: #1A9E5A;
+}
+
+.service-name {
+  color: #1A9E5A;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.room-services h3 {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.service-card-body img {
+  width: 80px;
+  cursor: default;
+}
+
+.service-card-body img:hover {
+  background-color: #1A9E5A;
+}
+
+.service-description {
+  font-weight: bold
+}
+
+@keyframes text-rotation {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .bk-btn {
+    margin-left: 70%;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .bk-btn {
+    margin-left: 40%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .hotel-details {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bk-btn {
+    margin-top: 50px;
+  }
+
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .description {
+    margin-left: 0;
+  }
+
+  .rooms {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .room-services {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .mainimg img {
+    max-width: 50%;
+  }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .gallery-slider {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .gallery img {
+    width: 80%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in;
+  }
+} 

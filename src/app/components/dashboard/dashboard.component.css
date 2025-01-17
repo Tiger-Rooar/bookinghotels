@@ -1,0 +1,72 @@
+.dashboard-container {
+  padding: 20px;
+}
+
+.dashboard-container h2 {
+  text-align: center;
+}
+  
+.dashboard-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dashboard-nav a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.dashboard-nav a.active {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.dashboard-content {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.btn {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #5cb85c;
+  color: white;
+  margin-top: 25px;
+}
+
+.btn-primary:hover {
+  background-color: #1fc91f;
+  transition: 0.4s;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #922320;
+  transition: 0.4s;
+}
+
+.booking-details {
+  display: flex;
+}
+
+.dashtitle {
+  text-align: center;
+}
+
+.no-bookings-text {
+  text-align: center;
+  margin-top: 25px;
+}

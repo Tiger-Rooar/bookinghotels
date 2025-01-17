@@ -1,0 +1,303 @@
+button {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 11px 10px 11px;
+  box-shadow: rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background-color: #e8e8e8;
+  border-color: #ffe2e2;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 15px;
+  transition: transform 400ms cubic-bezier(.68,-0.55,.27,2.5), 
+  border-color 400ms ease-in-out,
+  background-color 400ms ease-in-out;
+  word-spacing: -2px;
+  background: transparent;
+  cursor: pointer;
+}
+
+@keyframes movingBorders {
+  0% {
+    border-color: #fce4e4;
+  }
+
+  50% {
+    border-color: #ffd8d8;
+  }
+
+  90% {
+    border-color: #fce4e4;
+  }
+}
+
+button:hover {
+  background-color: #eee;
+  transform: scale(105%);
+  animation: movingBorders 3s infinite;
+}
+
+button svg {
+  fill: rgb(199,172,67);
+}
+
+button svg:hover {
+  fill: rgb(1,148,72);
+  transition: 1s;
+}
+
+@keyframes beatingHeart {
+  0% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.15);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.15);
+  }
+
+  60% {
+    transform: scale(1);
+  }
+}
+
+button:hover svg {
+  transform: scale(105%);
+  border-color: #ffd8d8;
+  animation: beatingHeart 1.2s infinite;
+}
+
+.favbtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.favorites-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.favorites-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.favorite-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.favorite-item:last-child {
+  border-bottom: none;
+}
+
+.favorite-details {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.favorite-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.favorite-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+.go-to-hotel {
+  text-decoration: none;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.go-to-hotel:hover {
+  background-color: #0056b3;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #f44336;
+}
+
+@media (max-width: 768px) {
+  .favorites-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .favorites-container {
+    width: 100%;
+  }
+}
+
+.favbtn {
+  position: relative;
+}
+
+.fav-counter {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 2px solid white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .favorites-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .favorite-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .favorite-details {
+    justify-content: flex-start;
+  }
+
+  .favorite-actions {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .delete-btn, .go-to-hotel {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .favbtn {
+    position: relative;
+  }
+
+  .fav-counter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .favorites-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .favorite-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .favorite-details {
+    justify-content: center;
+  }
+
+  .delete-btn, .go-to-hotel {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .close-btn {
+    font-size: 2rem;
+    top: 15px;
+    right: 15px;
+  }
+
+  .favbtn {
+    position: relative;
+  }
+
+  .fav-counter {
+    top: -5px;
+    right: -5px;
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+  }
+}

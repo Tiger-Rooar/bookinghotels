@@ -1,0 +1,31 @@
+<section>
+  <div class="results-container">
+    <h2>{{ 'SEARCH RESULTS FOR' | translate }} "{{ searchTerm }}"</h2>
+
+    <div *ngIf="results.length > 0" class="cards-container">
+      <div *ngFor="let result of results" class="result-item" [routerLink]="['/hotel', result.id]">
+        <div class="hotelsimg">
+          <img [src]="result.featuredImage" alt="{{ 'HOTEL IMAGE' | translate }}">
+        </div>
+        <h3>{{ result.name }}</h3>
+        <p>{{ result.city }}</p>
+        <div class="favcontainer">
+          <button class="favbtn" (click)="toggleFavorite(result); $event.stopPropagation()">
+            <svg *ngIf="isFavorite(result)" height="32" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0H24V24H0z" fill="none"></path>
+              <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z" fill="red"></path>
+            </svg>
+            <svg *ngIf="!isFavorite(result)" height="32" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0H24V24H0z" fill="none"></path>
+              <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="results.length === 0" class="noresults">
+    <p>{{ 'NO RESULTS FOUND' | translate }}</p>
+  </div>
+</section>

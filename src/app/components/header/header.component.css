@@ -1,0 +1,158 @@
+.firstSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 25px 0 25px;
+}
+
+.logo {
+    width: 80px;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.logo:not(:hover) {
+    transform: scale(1.0);
+    transition: 0.5s;
+}
+
+.background {
+    animation: changeBackground 30s infinite;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+@keyframes changeBackground {
+    0% {
+        background-image: url('https://tourguide.ge/wp-content/uploads/2019/07/tbilisi-at-night.jpeg');
+    }
+    20% {
+        background-image: url('https://media.radissonhotels.net/image/radisson-blu-iveria-hotel-tbilisi-city-centre/exterior/16256-114261-f62759778_3xl.jpg');
+    }
+    40% {
+        background-image: url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/103298623.jpg?k=a3f430613762b4a3cbce415facb748461cde1e93827b647eb70c7d7249c89a80&o=&hp=1');
+    }
+    60% {
+        background-image: url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/83302703.jpg?k=98839b7337aaf6bbdf7631970675156743ab6a8d4d682de3db22acd860f67f43&o=&hp=1');
+    }
+    80% {
+        background-image: url('https://georgicatravel.ge/wp-content/uploads/2016/07/courtyard-tbilisi-spa.jpg');
+    }
+    100% {
+        background-image: url('https://tourguide.ge/wp-content/uploads/2019/07/tbilisi-at-night.jpeg');
+    }
+}
+
+.switch {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.ge img {
+    width: 30px;
+}
+
+.en img{
+    width: 30px;
+}
+
+.userBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.signinBtn {
+    --color: #1A9E5Aab;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 22px;
+    border: 1px solid;
+    font-family: arial;
+    color: white;
+    z-index: 1;
+    width: 200px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    background-color: #635621ab;
+}
+   
+.signinBtn::before, .signinBtn::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+}
+
+.signinBtn::before {
+    top: -1em;
+    left: -1em;
+}
+
+.signinBtn::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+}
+
+.signinBtn:hover::before, .signinBtn:hover::after {
+    height: 450px;
+    width: 450px;
+}
+
+.signinBtn:hover {
+    color: black;
+}
+
+.signinBtn:active {
+    filter: brightness(.8);
+}
+
+.signinBtn i {
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 420px) {
+    .userBtn {
+        flex-direction: column;
+    }
+}

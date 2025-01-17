@@ -1,0 +1,56 @@
+<div class="booking-container">
+  <h2 class="booking-header">{{ 'BOOK A ROOM' | translate }}</h2>
+
+  <div class="form-group">
+    <label for="hotel" class="form-label">{{ 'SELECT A HOTEL' | translate }}</label>
+    <select id="hotel" [(ngModel)]="selectedHotel" (change)="onHotelChange()" class="form-select">
+      <option value="" disabled selected class="placeholder-option">{{ 'SELECT A HOTEL' | translate }}</option>
+      <option *ngFor="let hotel of hotels" [ngValue]="hotel">
+        {{ hotel.name }} - {{ hotel.city }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="selectedHotel" class="room-selection">
+    <h3 class="rooms-header">{{ 'ROOMS IN' | translate }} - {{ selectedHotel.name }}</h3>
+    <div *ngIf="selectedHotel.rooms?.length; else noRooms" class="room-list">
+      <label for="room" class="form-label">{{ 'SELECT A ROOM' | translate }}</label>
+      <select id="room" [(ngModel)]="selectedRoom" class="form-select">
+        <option value="" disabled selected class="placeholder-option">{{ 'SELECT A ROOM' | translate }}</option>
+        <option *ngFor="let room of selectedHotel.rooms" [ngValue]="room">
+          {{ getRoomName(room) }} - ${{ room.pricePerNight }}
+        </option>
+      </select>
+      <button class="btn btn-primary" (click)="bookRoom()">{{ 'BOOK ROOM' | translate }}</button>
+    </div>
+    <ng-template #noRooms>
+      <p class="no-rooms-text">{{ 'NO ROOMS AVAILABLE FOR THIS HOTEL' | translate }}</p>
+    </ng-template>
+  </div>
+
+  <h3 class="bookings-header">{{ 'YOUR BOOKINGS' | translate }}</h3>
+  <ul class="bookings-list">
+    <ng-container *ngIf="bookings.length > 0; else noBookings">
+      <li *ngFor="let booking of bookings" class="booking-item">
+        <div class="booking-details">
+          <img 
+          *ngIf="booking.roomImage" 
+          [src]="booking.roomImage" 
+          alt="{{ booking.roomName }}" 
+          class="room-image" 
+          (error)="booking.roomImage = '/assets/no-image.jpg'"
+        />
+        
+          <div class="booking-info">
+            <strong class="hotel-name">{{ booking.hotelName }}</strong> - 
+            <span class="room-name">{{ booking.roomName }}</span> (${{ booking.pricePerNight }}/{{ 'NIGHT' | translate }})
+          </div>
+        </div>
+        <button class="btn btn-danger" (click)="removeBooking(booking.bookingId)">{{ 'CANCEL BOOKING' | translate }}</button>
+      </li>
+    </ng-container>
+    <ng-template #noBookings>
+      <p class="no-bookings-text">{{ 'NO BOOKINGS YET' | translate }}</p>
+    </ng-template>
+  </ul>
+</div>

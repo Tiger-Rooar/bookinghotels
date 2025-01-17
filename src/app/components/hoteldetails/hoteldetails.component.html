@@ -1,0 +1,143 @@
+<div *ngIf="!isRoomsLoading">
+<div *ngIf="hotel" class="hotel-details">
+  <div class="left-side">
+    <h1>{{ hotel.name }}</h1>
+    <img [src]="hotel.featuredImage" alt="{{ 'HOTEL IMAGE' | translate }}" (click)="openImage(hotel.featuredImage)">
+  
+    <div class="room-gallery">
+      <h2>{{ 'ROOMS IMAGES' | translate }}</h2>
+      <div class="gallery">
+        <div class="gallery-slider">
+          <div *ngFor="let room of rooms; let i = index" class="gallery-slide" [class.active]="i >= currentSlide && i < currentSlide + imagesPerSlide">
+            <div *ngFor="let image of room.images">
+              <img *ngIf="image.source" [src]="image.source" alt="{{ 'ROOM IMAGE' | translate }}" (click)="openImage(image.source)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="arrow-btn arrow-left" (click)="prevSlide()">❮</button>
+      <button class="arrow-btn arrow-right" (click)="nextSlide()">❯</button>
+    </div>
+  </div>
+
+  <div class="right-side">
+    <div class="description">
+      <div class="descrcontainer">
+        <p class="name">{{ 'CITY' | translate }}:</p><p class="inside">{{ hotel.city }}</p>
+      </div>
+      <div class="descrcontainer">
+        <p class="name">{{ 'ADDRESS' | translate }}:</p><p class="inside">{{ hotel.address }}</p>
+      </div>
+    </div>
+
+<div class="rooms">
+  <h2>{{ 'ROOMS' | translate }}</h2>
+
+  <div *ngFor="let room of rooms" class="room-details">
+    <div class="room-header" (click)="toggleRoomDetails(room.id)">
+      <h3>{{ room.name }}</h3>
+      <button class="toggle-btn">
+        <span *ngIf="isRoomOpen(room.id)">&#9650;</span>
+        <span *ngIf="!isRoomOpen(room.id)">&#9660;</span>
+      </button>
+    </div>
+  
+    <div *ngIf="isRoomOpen(room.id)" class="room-dropdown">
+      <div class="room-image">
+        <img [src]="room.images[0]?.source" alt="{{ room.name }}" (click)="openImage(room.images[0]?.source)" />
+      </div>
+      
+      <div class="room-services">
+        <h4>{{ 'INCLUDED SERVICES' | translate }}</h4>
+        <div class="services-list">
+          <div class="service-item" *ngFor="let service of getRoomServices(room)">
+            <img *ngIf="service" [src]="service" alt="Service Image" />
+          </div>
+                    
+          <div class="viewmore-btn">
+            <a [routerLink]="['/rooms', room.id]"><button class="view-more">{{ 'VIEW MORE' | translate }}</button></a>
+          </div>
+        </div>
+      </div>
+           
+    </div>
+  </div>  
+
+    <div class="booking-btn">
+      <div class="favcontainer">
+        <button class="favbtn" (click)="toggleFavorite(hotel); $event.stopPropagation()">
+          <svg *ngIf="isFavorite(hotel)" height="32" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H24V24H0z" fill="none"></path>
+            <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z" fill="red"></path>
+          </svg>
+          <svg *ngIf="!isFavorite(hotel)" height="32" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H24V24H0z" fill="none"></path>
+            <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"></path>
+          </svg>
+        </button>
+      </div>
+
+<div>
+<button class="button-booking" routerLink="/bookings">
+  <p class="button__text">
+    <span style="--index: 0;">დ</span>
+    <span style="--index: 1;">ა</span>
+    <span style="--index: 2;">ჯ</span>
+    <span style="--index: 3;">ა</span>
+    <span style="--index: 4;">ვ</span>
+    <span style="--index: 5;">შ</span>
+    <span style="--index: 6;">ნ</span>
+    <span style="--index: 7;">ე</span>
+    <span style="--index: 8;"></span>
+    <span style="--index: 9;"></span>
+    <span style="--index: 10;"></span>
+    <span style="--index: 11;">ა</span>
+    <span style="--index: 12;">ხ</span>
+    <span style="--index: 13;">ლ</span>
+    <span style="--index: 14;">ა</span>
+  </p>
+
+  <div class="button__circle">
+    <svg
+      width="14"
+      class="button__icon"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 14 15"
+    >
+      <path
+        fill="currentColor"
+        d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+      ></path>
+    </svg>
+
+    <svg
+      class="button__icon button__icon--copy"
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      fill="none"
+      viewBox="0 0 14 15"
+    >
+      <path
+        fill="currentColor"
+        d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+      ></path>
+    </svg>
+  </div>
+</button>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<div *ngIf="!hotel">
+  <p class="error">{{ 'HOTEL DETAILS NOT FOUND' | translate }}</p>
+</div>
+
+<div class="modal" *ngIf="selectedImage" (click)="closeImage()">
+  <button class="close-btn" (click)="closeImage($event)">✖</button>
+  <img [src]="selectedImage" alt="{{ 'ZOOMED IMAGE' | translate }}">
+</div>
+</div>
+

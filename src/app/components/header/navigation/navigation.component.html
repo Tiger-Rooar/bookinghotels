@@ -1,0 +1,11 @@
+<div class="nav-container">
+    <button class="burger-menu" (click)="toggleMenu()">&#9776;</button>
+    <div class="nav" [class.active]="menuOpen">
+      <a routerLink="/home" routerLinkActive="active-page">{{ 'HOME' | translate }}</a>
+      <a routerLink="/about" routerLinkActive="active-page">{{ 'ABOUT' | translate }}</a>
+      <a routerLink="/hotels" routerLinkActive="active-page">{{ 'HOTELS' | translate }}</a>
+      <a routerLink="/contact" routerLinkActive="active-page">{{ 'CONTACT' | translate }}</a>
+      
+    </div>
+  </div>
+  

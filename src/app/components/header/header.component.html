@@ -1,0 +1,33 @@
+<header>
+  <div class="firstSection">
+    <a href=""><img src="logo.png" alt="Project By Khutso" class="logo"></a>
+    <app-navigation></app-navigation>
+    <div class="switch">
+      <app-favorites></app-favorites>
+      <div class="switch">
+        <button *ngIf="currentLanguage !== 'en'" (click)="useLanguage('en')" class="en">
+          <img src="/i18n/icons/en.png" alt="English">
+        </button>
+    
+        <button *ngIf="currentLanguage !== 'ge'" (click)="useLanguage('ge')" class="ge">
+          <img src="/i18n/icons/ge.png" alt="ქართული">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="background" id="background">
+    <div class="userBtn">
+      <a *ngIf="isLoggedIn" routerLink="/dashboard"><button class="signinBtn"><i class="fas fa-user"></i>{{ 'PROFILE' | translate }}</button></a>
+      <button *ngIf="isLoggedIn" (click)="logOut()" class="signinBtn"><i class="fas fa-sign-out-alt"></i>{{ 'LOG OUT' | translate }}</button>
+
+      <a *ngIf="!isLoggedIn" routerLink="/login"><button class="signinBtn"><i class="fas fa-user"></i>{{ 'LOGIN' | translate }}</button></a>
+      <a *ngIf="!isLoggedIn" routerLink="/register"><button class="signinBtn"><i class="fas fa-user-plus"></i>{{ 'REGISTER' | translate }}</button></a>
+    </div>
+
+    <div class="search-contain">
+      <app-search></app-search>
+    </div>
+
+  </div>
+</header>

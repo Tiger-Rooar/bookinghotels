@@ -1,0 +1,37 @@
+<div class="dashboard-container">
+  <h2>{{ 'WELCOME' | translate }} {{ user.name }}</h2>
+
+  <nav class="dashboard-nav">
+    <a routerLink="/dashboard" routerLinkActive="active">{{ 'DASHBOARD' | translate }}</a>
+    <a routerLink="/dashboard/user-profile" routerLinkActive="active">{{ 'USER PROFILE' | translate }}</a>
+    <a routerLink="/dashboard/settings" routerLinkActive="active">{{ 'SETTINGS' | translate }}</a>
+  </nav>
+
+  <div class="dashboard-content">
+    <router-outlet></router-outlet>
+
+    <ng-container *ngIf="isDashboardActive">
+      <h3 class="dashtitle">{{ 'YOUR BOOKINGS' | translate }}</h3>
+      <ul class="bookings-list">
+        <ng-container *ngIf="bookings.length > 0; else noBookings">
+          <li *ngFor="let booking of bookings" class="booking-item">
+            <div class="booking-details">
+              <strong class="hotel-name">{{ booking.hotelName }}</strong> - 
+              <span class="room-name">{{ booking.roomName }}</span> 
+              (${{ booking.pricePerNight }}/{{ 'NIGHT' | translate }})
+            </div>
+            
+            <button 
+              class="btn btn-danger" 
+              (click)="removeBooking(booking.bookingId)">
+              {{ 'CANCEL BOOKING' | translate }}
+            </button>
+          </li>
+        </ng-container>
+        <ng-template #noBookings>
+          <p class="no-bookings-text">{{ 'NO BOOKINGS YET' | translate }}</p>
+        </ng-template>
+      </ul>
+    </ng-container>
+  </div>
+</div>
