@@ -21,12 +21,15 @@ export class AuthService {
 
   login(email: string, password: string): Observable<boolean> {
     if (this.isBrowser()) {
-      const storedUser = JSON.parse(localStorage.getItem(this.USER_KEY) || '{}');
+      const storedUser = this.safeGetItem(this.USER_KEY);
 
-      if (storedUser.email === email && storedUser.password === password) {
-        localStorage.setItem(this.AUTH_KEY, 'true');
-        this.loggedInSubject.next(true);
-        return of(true);
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        if (user.email === email && user.password === password) {
+          this.safeSetItem(this.AUTH_KEY, 'true');
+          this.loggedInSubject.next(true);
+          return of(true);
+        }
       }
     }
 
@@ -35,13 +38,13 @@ export class AuthService {
 
   logout(): void {
     if (this.isBrowser()) {
-      localStorage.removeItem(this.AUTH_KEY);
+      this.safeRemoveItem(this.AUTH_KEY);
       this.loggedInSubject.next(false);
     }
   }
 
   isAuthenticated(): boolean {
-    return this.isBrowser() && localStorage.getItem(this.AUTH_KEY) === 'true';
+    return this.isBrowser() && this.safeGetItem(this.AUTH_KEY) === 'true';
   }
 
   private initializeLoginState(): void {
@@ -51,5 +54,30 @@ export class AuthService {
 
   private isBrowser(): boolean {
     return isPlatformBrowser(this.platformId);
+  }
+
+  private safeGetItem(key: string): string | null {
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      console.error('Error accessing local storage:', error);
+      return null;
+    }
+  }
+
+  private safeSetItem(key: string, value: string): void {
+    try {
+      localStorage.setItem(key, value);
+    } catch (error) {
+      console.error('Error setting local storage:', error);
+    }
+  }
+
+  private safeRemoveItem(key: string): void {
+    try {
+      localStorage.removeItem(key);
+    } catch (error) {
+      console.error('Error removing local storage item:', error);
+    }
   }
 }
