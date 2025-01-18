@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
           this.fetchCitiesForCountry(this.selectedCountry);
         }
       },
-      () => {
+      (error) => {
         this.loading = false;
         this.errorMessage = 'Error loading countries';
       }
@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
       (data) => {
         this.cities = data;
       },
-      () => {
+      (error) => {
         this.errorMessage = 'Failed to load cities for the selected country';
       }
     );
@@ -104,9 +104,7 @@ export class RegisterComponent implements OnInit {
       case 'address':
       case 'phone':
       case 'birthdate':
-        this.formErrors[field] = !this[field]
-          ? this.translateService.instant('REQUIRED FIELD')
-          : '';
+        this.formErrors[field] = !this[field] ? this.translateService.instant('REQUIRED FIELD') : '';
         break;
 
       case 'email':
@@ -117,9 +115,7 @@ export class RegisterComponent implements OnInit {
 
       case 'password':
         this.formErrors.password = !this.passwordRegex.test(this.password)
-          ? this.translateService.instant(
-              'PASSWORD MUST BE AT LEAST 8 CHARACTERS LONG AND INCLUDE AT LEAST ONE UPPERCASE LETTER, ONE NUMBER, AND ONE SPECIAL CHARACTER'
-            )
+          ? this.translateService.instant('PASSWORD MUST BE AT LEAST 8 CHARACTERS LONG AND INCLUDE AT LEAST ONE UPPERCASE LETTER, ONE NUMBER, AND ONE SPECIAL CHARACTER')
           : '';
         this.validatePasswordMatch();
         break;
@@ -134,17 +130,16 @@ export class RegisterComponent implements OnInit {
   }
 
   validatePasswordMatch(): void {
-    this.formErrors.repeatPassword =
-      this.password !== this.repeatPassword
-        ? this.translateService.instant('PASSWORDS DO NOT MATCH')
-        : '';
+    this.formErrors.repeatPassword = this.password !== this.repeatPassword
+      ? this.translateService.instant('PASSWORDS DO NOT MATCH')
+      : '';
   }
 
-  togglePasswordVisibility(): void {
+  togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
 
-  toggleRepeatPasswordVisibility(): void {
+  toggleRepeatPasswordVisibility() {
     this.showRepeatPassword = !this.showRepeatPassword;
   }
 
@@ -179,6 +174,7 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     this.resetFormErrors();
+
     this.checkRequiredFields();
 
     if (!this.validateForm()) {
@@ -199,7 +195,7 @@ export class RegisterComponent implements OnInit {
 
     localStorage.setItem('user', JSON.stringify(user));
     this.resetForm();
-    this.router.navigate(['/user-profile']);
+    this.router.navigate(['/login']);
   }
 
   resetFormErrors(): void {

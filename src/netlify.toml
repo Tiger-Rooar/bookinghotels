@@ -1,0 +1,4 @@
+[build]
+  command = "curl -O https://golang.org/dl/go1.19.linux-amd64.tar.gz && tar -C /usr/local -xvzf go1.19.linux-amd64.tar.gz && go version && go build"
+  publish = "public"
+  NODE_VERSION = "14"
